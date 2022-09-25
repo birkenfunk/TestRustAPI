@@ -1,18 +1,11 @@
-use self::models::*;
-use diesel::prelude::*;
 use fake::{Fake};
 use fake::locales::EN;
 use first_rust_project::*;
 
 
 fn main() {
-    use self::schema::users::dsl::*;
-
     let connection = &mut establish_connection();
-    let results = users
-        .limit(5)
-        .load::<User>(connection)
-        .expect("Error loading users");
+    let results = get_all_users(connection);
 
     println!("Displaying {} posts", results.len());
     for user in results {
@@ -28,4 +21,14 @@ fn main() {
 
     let user = create_user(connection, &new_name, &new_passwords);
     println!("\nSaved draft {} with id {}", user.name, user.id);
+
+    let search_name = "Alex1";
+
+    let option_user = get_user_by_name(search_name, connection);
+
+    if option_user.is_some() {
+        println!("Found User {} with Id {}", search_name, user.id);
+    }else {
+        println!("User {} not found", search_name);
+    }
 }

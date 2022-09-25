@@ -8,6 +8,7 @@ publish = false
 
 [dependencies]
 diesel = { version = "2.0.0", features = ["mysql"] }
+fake = "2.5.0"
 dotenvy = "0.15"
 
 [[bin]]

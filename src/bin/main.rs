@@ -2,6 +2,7 @@ use self::models::*;
 use diesel::prelude::*;
 use first_rust_project::*;
 
+
 fn main() {
     use self::schema::users::dsl::*;
 
@@ -13,8 +14,9 @@ fn main() {
 
     println!("Displaying {} posts", results.len());
     for user in results {
-        println!("{}", user.user_id);
+        println!("{}", user.id);
         println!("-----------\n");
-        println!("{}", user.user_name);
+        println!("{}", user.name);
     }
+
 }

@@ -14,7 +14,7 @@ pub fn establish_connection() -> MysqlConnection{
         .unwrap_or_else(|_| panic!("Error connecting to {}", database_url))
 }
 
-pub fn create_post(conn: &mut MysqlConnection, name: &str, password: &str) -> User {
+pub fn create_user(conn: &mut MysqlConnection, name: &str, password: &str) -> User {
     use crate::schema::users;
 
     let new_user = NewUser { name, password };

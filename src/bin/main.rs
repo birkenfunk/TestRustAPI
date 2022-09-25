@@ -1,5 +1,7 @@
 use self::models::*;
 use diesel::prelude::*;
+use fake::{Fake};
+use fake::locales::EN;
 use first_rust_project::*;
 
 
@@ -19,4 +21,11 @@ fn main() {
         println!("{}", user.name);
     }
 
+    use fake::faker::name::raw::*;
+
+    let new_name: String = Name(EN).fake();
+    let new_passwords: String = Name(EN).fake();
+
+    let user = create_user(connection, &new_name, &new_passwords);
+    println!("\nSaved draft {} with id {}", user.name, user.id);
 }
